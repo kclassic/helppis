@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-const Task = ({ tasks }) => {
+const TaskPage = ({ tasks }) => {
   let { taskId } = useParams();
   const task = tasks.find(t => String(t.id) === taskId);
   if (!task) return null;
@@ -20,4 +20,4 @@ const Task = ({ tasks }) => {
   );
 };
 
-export default Task;
+export default TaskPage;

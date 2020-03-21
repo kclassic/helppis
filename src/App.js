@@ -4,10 +4,12 @@ import styled from "styled-components";
 import Box from "@material-ui/core/Box";
 
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ChatIcon from "@material-ui/icons/Chat";
 
 import Chat from "./chat/Chat";
 import MainPage from "./MainPage";
+import ProfilePage from "./ProfilePage";
 
 const Container = styled(Box)`
   display: flex;
@@ -21,11 +23,8 @@ const Container = styled(Box)`
 
 const InnerContainer = styled(Box)`
   max-width: 320px;
-  padding: 20px;
-`;
-
-const Heading = styled(Box)`
   width: 100%;
+  padding: 20px;
 `;
 
 const AppContext = React.createContext();
@@ -109,18 +108,24 @@ class App extends React.Component {
         <InnerContainer>
           <AppContext.Provider value={this.state}>
             <Router>
-              <Heading>
+              <div>
                 <Link to="/home">
                   <AccountBalanceIcon />
+                </Link>
+
+                <Link to="/profile">
+                  <AccountCircleIcon />
                 </Link>
 
                 <Link to="/chat">
                   <ChatIcon />
                 </Link>
-              </Heading>
+              </div>
               <Switch>
                 <Route path="/profile">
-                  <h2>Profile</h2>
+                  <AppContext.Consumer>
+                    {({ user }) => <ProfilePage user={user} />}
+                  </AppContext.Consumer>
                 </Route>
                 <Route path="/home">
                   <AppContext.Consumer>

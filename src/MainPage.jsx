@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
-import Task from "./Task";
+import TaskPage from "./TaskPage";
 import TaskCard from "./TaskCard";
 
 const TaskList = styled("ul")`
@@ -27,7 +27,7 @@ const MainPage = ({ tasks, addTask, activeTasks }) => {
     <div>
       <Switch>
         <Route path={`${path}/:taskId`}>
-          <Task tasks={tasks} />
+          <TaskPage tasks={tasks} />
         </Route>
         <Route path={path}>
           <h2>Tasks</h2>
