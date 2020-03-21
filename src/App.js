@@ -31,6 +31,10 @@ const InnerContainer = styled(Box)`
   padding: 20px;
 `;
 
+const Header = styled(Box)`
+  padding-bottom: 12px;
+`;
+
 const MainTitle = styled(Link)`
   color: #333;
   font-size: 25px;
@@ -60,10 +64,29 @@ class App extends React.Component {
           }
         ]
       },
+      createdTasks: [
+        {
+          id: 0,
+          owner: {
+            name: "Great Tyyne",
+            age: "95"
+          },
+          created: new Date(),
+          type: {
+            type: "store",
+            items: ["milk", "bread", "beer"]
+          },
+          location: "Iso-mumminkatu 2",
+          status: "open"
+        }
+      ],
       activeTasks: [
         {
           id: 0,
-          owner: "John Smith",
+          owner: {
+            name: "John",
+            age: "44"
+          },
           created: new Date(),
           type: {
             type: "store",
@@ -76,7 +99,10 @@ class App extends React.Component {
       tasks: [
         {
           id: 0,
-          owner: "John Smith",
+          owner: {
+            name: "John",
+            age: "44"
+          },
           created: new Date(),
           type: {
             type: "store",
@@ -87,7 +113,10 @@ class App extends React.Component {
         },
         {
           id: 1,
-          owner: "John Smith",
+          owner: {
+            name: "Alpo",
+            age: "68"
+          },
           created: new Date(),
           type: {
             type: "store",
@@ -98,7 +127,10 @@ class App extends React.Component {
         },
         {
           id: 2,
-          owner: "Tyyne",
+          owner: {
+            name: "Tyyne",
+            age: "84"
+          },
           created: new Date(),
           type: {
             type: "apotechary",
@@ -118,7 +150,7 @@ class App extends React.Component {
         <InnerContainer>
           <AppContext.Provider value={this.state}>
             <Router>
-              <div>
+              <Header>
                 <MainTitle to="/home">
                   <span>Helppis</span>
                 </MainTitle>
@@ -133,7 +165,7 @@ class App extends React.Component {
                     />
                   </Link>
                 </div>
-              </div>
+              </Header>
               <Switch>
                 <Route path="/profile">
                   <AppContext.Consumer>
@@ -142,11 +174,12 @@ class App extends React.Component {
                 </Route>
                 <Route path="/home">
                   <AppContext.Consumer>
-                    {({ tasks, activeTasks, addTask }) => (
+                    {({ tasks, activeTasks, addTask, createdTasks }) => (
                       <MainPage
                         tasks={tasks}
                         addTask={addTask}
                         activeTasks={activeTasks}
+                        createdTasks={createdTasks}
                       />
                     )}
                   </AppContext.Consumer>

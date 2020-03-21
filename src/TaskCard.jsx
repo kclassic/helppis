@@ -33,6 +33,20 @@ const TaskCard = ({ task, active }) => {
   if (!task) return null;
   return (
     <CardContainer active={active}>
+      {active ? (
+        <div
+          style={{
+            paddingBottom: "2px",
+            marginBottom: "10px",
+            borderBottom: "1px solid #333"
+          }}
+        >
+          <span role="img" aria-label="strongness">
+            💪
+          </span>{" "}
+          Olet matkalla apuun!
+        </div>
+      ) : null}
       <IconContainer>
         {task.type.type === "store" ? (
           <>
@@ -49,7 +63,7 @@ const TaskCard = ({ task, active }) => {
         )}
       </IconContainer>
       <span>
-        {task.owner} {task.location}
+        {task.owner.name}, {task.owner.age}, odottaa avustajaa
       </span>
     </CardContainer>
   );

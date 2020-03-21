@@ -13,7 +13,7 @@ const TaskPage = ({ tasks }) => {
       }}
     >
       <h1>
-        Get {task.type.type} for {task.owner}
+        Get {task.type.type} for {task.owner.name}
       </h1>
       <h3>Requested task ID: {task.id}</h3>
     </div>
