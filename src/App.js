@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import Box from "@material-ui/core/Box";
 
-import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import ChatIcon from "@material-ui/icons/Chat";
 
@@ -18,7 +17,7 @@ const Container = styled(Box)`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: palevioletred;
+  background-color: #ffdbe7;
   margin: -8px;
   font-family: "Lato", sans-serif;
 `;
@@ -27,6 +26,13 @@ const InnerContainer = styled(Box)`
   max-width: 320px;
   width: 100%;
   padding: 20px;
+`;
+
+const MainTitle = styled(Link)`
+  text-decoration: none;
+  color: #333;
+  font-size: 25px;
+  letter-spacing: 2px;
 `;
 
 const AppContext = React.createContext();
@@ -111,17 +117,20 @@ class App extends React.Component {
           <AppContext.Provider value={this.state}>
             <Router>
               <div>
-                <Link to="/home">
-                  <AccountBalanceIcon />
-                </Link>
-
-                <Link to="/profile">
-                  <AccountCircleIcon />
-                </Link>
-
+                <MainTitle to="/home">
+                  <span>Helppis</span>
+                </MainTitle>
                 <Link to="/chat">
                   <ChatIcon />
                 </Link>
+                <div style={{ float: "right" }}>
+                  <Link to="/profile">
+                    <AccountCircleIcon
+                      htmlColor={"#51da51"}
+                      fontSize={"large"}
+                    />
+                  </Link>
+                </div>
               </div>
               <Switch>
                 <Route path="/profile">
