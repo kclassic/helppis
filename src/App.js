@@ -20,6 +20,9 @@ const Container = styled(Box)`
   background-color: #ffdbe7;
   margin: -8px;
   font-family: "Lato", sans-serif;
+  a {
+    text-decoration: none;
+  }
 `;
 
 const InnerContainer = styled(Box)`
@@ -29,7 +32,6 @@ const InnerContainer = styled(Box)`
 `;
 
 const MainTitle = styled(Link)`
-  text-decoration: none;
   color: #333;
   font-size: 25px;
   letter-spacing: 2px;
@@ -126,7 +128,7 @@ class App extends React.Component {
                 <div style={{ float: "right" }}>
                   <Link to="/profile">
                     <AccountCircleIcon
-                      htmlColor={"#51da51"}
+                      htmlColor={"#e500ff"}
                       fontSize={"large"}
                     />
                   </Link>
