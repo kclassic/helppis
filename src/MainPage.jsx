@@ -1,6 +1,13 @@
 import React from "react";
 import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
+import styled from "styled-components";
 import Task from "./Task";
+import TaskCard from "./TaskCard";
+
+const TaskList = styled("ul")`
+  list-style: none;
+  padding-inline-start: 0;
+`;
 
 const newTask = {
   id: 9,
@@ -14,7 +21,7 @@ const newTask = {
   status: "open"
 };
 
-const MainPage = ({ tasks, addTask }) => {
+const MainPage = ({ tasks, addTask, activeTasks }) => {
   let { url, path } = useRouteMatch();
   return (
     <div>
@@ -24,18 +31,26 @@ const MainPage = ({ tasks, addTask }) => {
         </Route>
         <Route path={path}>
           <h2>Tasks</h2>
-
-          <ul>
+          <TaskList>
+            {activeTasks.map((task, idx) => (
+              <li key={idx}>
+                <Link to={`${url}/${task.id}`}>
+                  <TaskCard task={task} active />
+                </Link>
+              </li>
+            ))}
+          </TaskList>
+          <TaskList>
             {tasks
               .filter(t => t.status === "open")
               .map((task, idx) => (
                 <li key={idx}>
                   <Link to={`${url}/${task.id}`}>
-                    {task.type.type} in {task.location}
+                    <TaskCard task={task} />
                   </Link>
                 </li>
               ))}
-          </ul>
+          </TaskList>
           <button onClick={() => addTask(newTask)}>new task</button>
         </Route>
       </Switch>

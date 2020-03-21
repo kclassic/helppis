@@ -20,8 +20,12 @@ const Container = styled(Box)`
 `;
 
 const InnerContainer = styled(Box)`
-  max-width: 720px;
+  max-width: 320px;
   padding: 20px;
+`;
+
+const Heading = styled(Box)`
+  width: 100%;
 `;
 
 const AppContext = React.createContext();
@@ -105,7 +109,7 @@ class App extends React.Component {
         <InnerContainer>
           <AppContext.Provider value={this.state}>
             <Router>
-              <div>
+              <Heading>
                 <Link to="/home">
                   <AccountBalanceIcon />
                 </Link>
@@ -113,15 +117,19 @@ class App extends React.Component {
                 <Link to="/chat">
                   <ChatIcon />
                 </Link>
-              </div>
+              </Heading>
               <Switch>
                 <Route path="/profile">
                   <h2>Profile</h2>
                 </Route>
                 <Route path="/home">
                   <AppContext.Consumer>
-                    {({ tasks, addTask }) => (
-                      <MainPage tasks={tasks} addTask={addTask} />
+                    {({ tasks, activeTasks, addTask }) => (
+                      <MainPage
+                        tasks={tasks}
+                        addTask={addTask}
+                        activeTasks={activeTasks}
+                      />
                     )}
                   </AppContext.Consumer>
                 </Route>

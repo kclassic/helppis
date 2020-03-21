@@ -8,8 +8,6 @@ const Task = ({ tasks }) => {
   return (
     <div
       style={{
-        margin: "50px",
-        padding: "20px",
         backgroundColor: "palevioletred",
         borderRadius: "5px"
       }}
