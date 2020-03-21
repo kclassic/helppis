@@ -60,14 +60,14 @@ function Tasks() {
 
       <Switch>
         <Route path={`${path}/:taskId`}>
-          <Topic />
+          <Task />
         </Route>
       </Switch>
     </div>
   );
 }
 
-function Topic() {
+function Task() {
   let { taskId } = useParams();
   return (
     <div
