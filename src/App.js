@@ -10,6 +10,7 @@ import ChatIcon from "@material-ui/icons/Chat";
 import Chat from "./chat/Chat";
 import MainPage from "./MainPage";
 import ProfilePage from "./ProfilePage";
+import NewTaskPage from "./NewTaskPage";
 
 const Container = styled(Box)`
   display: flex;
@@ -19,6 +20,7 @@ const Container = styled(Box)`
   height: 100vh;
   background-color: palevioletred;
   margin: -8px;
+  font-family: "Lato", sans-serif;
 `;
 
 const InnerContainer = styled(Box)`
@@ -87,7 +89,7 @@ class App extends React.Component {
           status: "open"
         },
         {
-          id: 13,
+          id: 2,
           owner: "Tyyne",
           created: new Date(),
           type: {
@@ -135,6 +137,13 @@ class App extends React.Component {
                         addTask={addTask}
                         activeTasks={activeTasks}
                       />
+                    )}
+                  </AppContext.Consumer>
+                </Route>
+                <Route path="/addtask">
+                  <AppContext.Consumer>
+                    {({ addTask, tasks }) => (
+                      <NewTaskPage addTask={addTask} tasks={tasks} />
                     )}
                   </AppContext.Consumer>
                 </Route>

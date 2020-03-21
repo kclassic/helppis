@@ -14,7 +14,7 @@ const TaskCard = ({ task, active }) => {
   if (!task) return null;
   return (
     <CardContainer active={active}>
-      {task.type.type} in {task.location}
+      {task.owner} needs {task.type.type} in {task.location}
     </CardContainer>
   );
 };

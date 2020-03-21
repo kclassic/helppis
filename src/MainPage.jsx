@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
+import Button from "./components/BasicButton";
 import TaskPage from "./TaskPage";
 import TaskCard from "./TaskCard";
 
@@ -9,19 +10,9 @@ const TaskList = styled("ul")`
   padding-inline-start: 0;
 `;
 
-const newTask = {
-  id: 9,
-  owner: "Pasha",
-  created: new Date(),
-  type: {
-    type: "store",
-    items: ["milk", "bread", "beer"]
-  },
-  location: "Home address",
-  status: "open"
-};
+const NewTaskButton = styled(Button)``;
 
-const MainPage = ({ tasks, addTask, activeTasks }) => {
+const MainPage = ({ tasks, activeTasks }) => {
   let { url, path } = useRouteMatch();
   return (
     <div>
@@ -51,7 +42,9 @@ const MainPage = ({ tasks, addTask, activeTasks }) => {
                 </li>
               ))}
           </TaskList>
-          <button onClick={() => addTask(newTask)}>new task</button>
+          <Link to={`/addtask`}>
+            <Button>New task</Button>
+          </Link>
         </Route>
       </Switch>
     </div>
