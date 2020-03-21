@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import styled from "styled-components";
 import Box from "@material-ui/core/Box";
@@ -7,6 +7,7 @@ import Box from "@material-ui/core/Box";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 import Button from "./components/BasicButton";
+import ChatIcon from "@material-ui/icons/Chat";
 
 const TaskContainer = styled(Box)`
 position: relative;
@@ -45,12 +46,35 @@ const SmallText = styled("span")`
   font-size: 10px;
 `;
 
-const TaskPage = ({ tasks }) => {
+const TaskPage = ({ tasks, ownTask }) => {
   let { taskId } = useParams();
-  const task = tasks.find(t => String(t.id) === taskId);
+  const [task, setTask] = React.useState(
+    tasks.find(t => String(t.id) === taskId)
+  );
+  const doTask = task => {
+    setTask(task);
+    ownTask(task);
+  };
   if (!task) return null;
   return (
     <TaskContainer>
+      {task.status === "progress" ? (
+        <>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              paddingTop: "8px",
+              paddingBottom: "8px"
+            }}
+          >
+            <span>Olet auttamassa</span>
+            <Link to="/chat">
+              <ChatIcon />
+            </Link>
+          </div>
+        </>
+      ) : null}
       <IconContainer>
         {task.type.type === "store" ? (
           <>
@@ -70,17 +94,22 @@ const TaskPage = ({ tasks }) => {
       <span>
         {task.owner.name}, {task.owner.age}, odottaa avustajaa
       </span>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          paddingTop: "8px"
-        }}
-      >
-        <Button style={{ backgroundColor: "#d5d5ff" }}>
-          Auta {task.owner.name}a
-        </Button>
-      </div>
+      {task.status === "open" ? (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            paddingTop: "8px"
+          }}
+        >
+          <Button
+            style={{ backgroundColor: "#d5d5ff" }}
+            onClick={() => doTask({ ...task, status: "progress" })}
+          >
+            Auta {task.owner.name}a
+          </Button>
+        </div>
+      ) : null}
       <SmallText>Ilmoitus jätetty {task.created.toDateString()}</SmallText>
     </TaskContainer>
   );

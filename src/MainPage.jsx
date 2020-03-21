@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route, Link, useRouteMatch, Redirect } from "react-router-dom";
+import { Switch, Route, Link, useRouteMatch } from "react-router-dom";
 import styled from "styled-components";
 import Button from "./components/BasicButton";
 import TaskPage from "./TaskPage";
@@ -29,7 +29,7 @@ function TabPanel(props) {
   );
 }
 
-const MainPage = ({ tasks, activeTasks, createdTasks }) => {
+const MainPage = ({ tasks, activeTasks, createdTasks, ownTask }) => {
   let { url, path } = useRouteMatch();
 
   const [value, setValue] = React.useState(0);
@@ -41,7 +41,7 @@ const MainPage = ({ tasks, activeTasks, createdTasks }) => {
     <div>
       <Switch>
         <Route path={`${path}/:taskId`}>
-          <TaskPage tasks={tasks} />
+          <TaskPage tasks={tasks} ownTask={ownTask} />
         </Route>
         <Route path={path}>
           <Tabs

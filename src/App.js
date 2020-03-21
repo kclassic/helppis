@@ -53,6 +53,28 @@ class App extends React.Component {
       }));
     };
 
+    this.ownTask = task => {
+      this.setState(state => ({
+        activeTasks: [
+          ...state.activeTasks,
+          ...state.tasks
+            .map(t => {
+              if (t.id === task.id) {
+                return task;
+              }
+              return null;
+            })
+            .filter(Boolean)
+        ],
+        tasks: state.tasks.map(t => {
+          if (t.id === task.id) {
+            return task;
+          }
+          return t;
+        })
+      }));
+    };
+
     this.state = {
       user: {
         name: "John Smith",
@@ -140,7 +162,8 @@ class App extends React.Component {
           status: "open"
         }
       ],
-      addTask: this.addTask
+      addTask: this.addTask,
+      ownTask: this.ownTask
     };
   }
 
@@ -174,12 +197,19 @@ class App extends React.Component {
                 </Route>
                 <Route path="/home">
                   <AppContext.Consumer>
-                    {({ tasks, activeTasks, addTask, createdTasks }) => (
+                    {({
+                      tasks,
+                      activeTasks,
+                      addTask,
+                      createdTasks,
+                      ownTask
+                    }) => (
                       <MainPage
                         tasks={tasks}
                         addTask={addTask}
                         activeTasks={activeTasks}
                         createdTasks={createdTasks}
+                        ownTask={ownTask}
                       />
                     )}
                   </AppContext.Consumer>
