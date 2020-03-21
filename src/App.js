@@ -177,9 +177,6 @@ class App extends React.Component {
                 <MainTitle to="/home">
                   <span>Helppis</span>
                 </MainTitle>
-                <Link to="/chat">
-                  <ChatIcon />
-                </Link>
                 <div style={{ float: "right" }}>
                   <Link to="/profile">
                     <AccountCircleIcon
