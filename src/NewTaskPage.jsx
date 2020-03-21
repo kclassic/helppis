@@ -74,7 +74,7 @@ const NewTask = ({ tasks, addTask }) => {
 
   const handleInput = text => {
     const newChip = { key: shopItem.length, label: text };
-    setShopItem([...shopItems, newChip]);
+    setShopItem([...shopItem, newChip]);
   };
 
   const handleDelete = chipToDelete => () => {
