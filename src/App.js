@@ -1,10 +1,28 @@
 import React from "react";
 import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import styled from "styled-components";
+import Box from "@material-ui/core/Box";
+
 import AccountBalanceIcon from "@material-ui/icons/AccountBalance";
 import ChatIcon from "@material-ui/icons/Chat";
 
 import Chat from "./chat/Chat";
 import MainPage from "./MainPage";
+
+const Container = styled(Box)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: palevioletred;
+  margin: -8px;
+`;
+
+const InnerContainer = styled(Box)`
+  max-width: 720px;
+  padding: 20px;
+`;
 
 const AppContext = React.createContext();
 
@@ -29,6 +47,19 @@ class App extends React.Component {
           }
         ]
       },
+      activeTasks: [
+        {
+          id: 0,
+          owner: "John Smith",
+          created: new Date(),
+          type: {
+            type: "store",
+            items: ["milk", "bread", "beer"]
+          },
+          location: "Hevosenkengänkuja 2, 11011 Helsinki",
+          status: "progress"
+        }
+      ],
       tasks: [
         {
           id: 0,
@@ -39,7 +70,7 @@ class App extends React.Component {
             items: ["milk", "bread", "beer"]
           },
           location: "Hevosenkengänkuja 2, 11011 Helsinki",
-          status: "closed"
+          status: "progress"
         },
         {
           id: 1,
@@ -70,34 +101,38 @@ class App extends React.Component {
 
   render() {
     return (
-      <AppContext.Provider value={this.state}>
-        <Router>
-          <div>
-            <Link to="/home">
-              <AccountBalanceIcon />
-            </Link>
+      <Container>
+        <InnerContainer>
+          <AppContext.Provider value={this.state}>
+            <Router>
+              <div>
+                <Link to="/home">
+                  <AccountBalanceIcon />
+                </Link>
 
-            <Link to="/chat">
-              <ChatIcon />
-            </Link>
-          </div>
-          <Switch>
-            <Route path="/profile">
-              <h2>Profile</h2>
-            </Route>
-            <Route path="/home">
-              <AppContext.Consumer>
-                {({ tasks, addTask }) => (
-                  <MainPage tasks={tasks} addTask={addTask} />
-                )}
-              </AppContext.Consumer>
-            </Route>
-            <Route path="/chat">
-              <Chat />
-            </Route>
-          </Switch>
-        </Router>
-      </AppContext.Provider>
+                <Link to="/chat">
+                  <ChatIcon />
+                </Link>
+              </div>
+              <Switch>
+                <Route path="/profile">
+                  <h2>Profile</h2>
+                </Route>
+                <Route path="/home">
+                  <AppContext.Consumer>
+                    {({ tasks, addTask }) => (
+                      <MainPage tasks={tasks} addTask={addTask} />
+                    )}
+                  </AppContext.Consumer>
+                </Route>
+                <Route path="/chat">
+                  <Chat />
+                </Route>
+              </Switch>
+            </Router>
+          </AppContext.Provider>
+        </InnerContainer>
+      </Container>
     );
   }
 }
