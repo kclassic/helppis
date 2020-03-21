@@ -48,17 +48,17 @@ const getDummyResponse = () => {
     return dummyResponses[0];
 }
 
-const getDirection = (userId, classes) => {
-    if(userId === '1') {
-        return classes.left;
-    }
-    return classes.right;
-}
-
 const Chat = () => {
     const classes = useStyles();
 
     const [messages, setMessages] = useState(dummyMessages);
+
+    const getDirection = (userId) => {
+        if(userId === '1') {
+            return classes.left;
+        }
+        return classes.right;
+    }
 
     const addDummyResponse = (newMessages) => {
         const withResponse = newMessages.concat(getDummyResponse());
@@ -77,13 +77,14 @@ const Chat = () => {
 
     const chatBubbles = messages.map((message, idx) => {
         return (
-            <div className={`${classes.bubbleContainer} ${getDirection(message.userId, classes)}`} key={idx}>
+            <div className={`${classes.bubbleContainer} ${getDirection(message.userId)}`} key={idx}>
                 <div className={classes.bubble}>
                     <div className={classes.button}>{message.text}</div>
                 </div>
             </div>);
     });
-    return( 
+
+    return ( 
         <div className={classes.container}>
             <div>{chatBubbles}</div> 
             <MessageInput callBack={print} />
