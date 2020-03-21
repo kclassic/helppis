@@ -1,24 +1,85 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useRouteMatch,
+  useParams
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+      <div>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+            <li>
+              <Link to="/tasks">Tasks</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Switch>
+          <Route path="/profile">
+            <h2>Profile</h2>
+          </Route>
+          <Route path="/tasks">
+            <Tasks />
+          </Route>
+          <Route path="/">
+            <h2>Home</h2>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+}
+
+function Tasks() {
+  let { url, path } = useRouteMatch();
+
+  return (
+    <div>
+      <h2>Tasks</h2>
+
+      <ul>
+        <li>
+          <Link to={`${url}/1`}>Task 1 Card</Link>
+        </li>
+        <li>
+          <Link to={`${url}/2`}>Task 2 Card</Link>
+        </li>
+      </ul>
+
+      <Switch>
+        <Route path={`${path}/:taskId`}>
+          <Topic />
+        </Route>
+      </Switch>
+    </div>
+  );
+}
+
+function Topic() {
+  let { taskId } = useParams();
+  return (
+    <div
+      style={{
+        margin: "50px",
+        padding: "20px",
+        backgroundColor: "palevioletred",
+        borderRadius: "5px"
+      }}
+    >
+      <Link to={`/`}>Home</Link>
+      <h3>Requested task ID: {taskId}</h3>
     </div>
   );
 }
