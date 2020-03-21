@@ -124,7 +124,7 @@ const NewTask = ({ tasks, addTask }) => {
             </ThingContainer>
           ))}
 
-          <SubTitle>Avun tarvitsija</SubTitle>
+          <SubTitle>Avuntarvitsija</SubTitle>
           {mummos.map((m, idx) => (
             <ThingContainer
               key={idx}
@@ -156,6 +156,7 @@ const NewTask = ({ tasks, addTask }) => {
         <>
           <Button onClick={() => goToStep(0)}>Edellinen</Button>
           <Title>Ostoslista</Title>
+          <SubTitle>Lisää tuotteen nimi ja lukumäärä</SubTitle>
           <TextField
             value={text}
             onChange={e => setText(e.target.value)}
@@ -179,7 +180,7 @@ const NewTask = ({ tasks, addTask }) => {
               />
             );
           })}
-          <Button onClick={submitRequest}>Lähetä avun tarve ilmoitus</Button>
+          <Button onClick={submitRequest}>Lähetä avunpyyntö</Button>
         </>
       ) : null}
     </>
