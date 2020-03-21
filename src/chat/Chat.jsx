@@ -76,11 +76,12 @@ const Chat = () => {
     }
 
     const chatBubbles = messages.map((message, idx) => {
-        return (<div className={`${classes.bubbleContainer} ${getDirection(message.userId, classes)}`} key={idx}>
-            <div className={classes.bubble}>
-                <div className={classes.button}>{message.text}</div>
-            </div>
-        </div>);
+        return (
+            <div className={`${classes.bubbleContainer} ${getDirection(message.userId, classes)}`} key={idx}>
+                <div className={classes.bubble}>
+                    <div className={classes.button}>{message.text}</div>
+                </div>
+            </div>);
     });
     return( 
         <div className={classes.container}>

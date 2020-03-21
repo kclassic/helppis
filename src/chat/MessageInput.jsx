@@ -6,7 +6,7 @@ const submit = (event, callBack, text) => {
     if (event.key === 'Enter') {
         event.preventDefault();
         event.stopPropagation();
-       callBack(text);
+        callBack(text);
     }
 }
 
@@ -20,7 +20,7 @@ const MessageInput = (props) => {
         onKeyDown={(e) => submit(e, props.callBack, text)} 
         endAdornment={
             <InputAdornment position="end">
-            <IconButton onClick={() => props.callBack(text)}>
+                <IconButton onClick={() => props.callBack(text)}>
                     <SendIcon />
                 </IconButton>
             </InputAdornment>}
