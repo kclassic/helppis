@@ -43,9 +43,9 @@ const getDirection = (userId, classes) => {
 const Chat = () => {
     const classes = useStyles();
 
-    const chatBubbles = messages.map((message, i = 0) => {
-        return (<div className={`${classes.bubbleContainer} ${getDirection(message.userId, classes)}`} key={i++}>
-            <div key={i++} className={classes.bubble}>
+    const chatBubbles = messages.map((message, idx) => {
+        return (<div className={`${classes.bubbleContainer} ${getDirection(message.userId, classes)}`} key={idx}>
+            <div className={classes.bubble}>
                 <div className={classes.button}>{message.text}</div>
             </div>
         </div>);
