@@ -7,6 +7,7 @@ import {
   useRouteMatch,
   useParams
 } from "react-router-dom";
+import Chat from './chat/Chat';
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             <li>
               <Link to="/tasks">Tasks</Link>
             </li>
+            <li>
+              <Link to="/chat">Chat</Link>
+            </li>
           </ul>
         </nav>
 
@@ -32,6 +36,9 @@ function App() {
           </Route>
           <Route path="/tasks">
             <Tasks />
+          </Route>
+          <Route path="/chat">
+            <Chat />
           </Route>
           <Route path="/">
             <h2>Home</h2>
