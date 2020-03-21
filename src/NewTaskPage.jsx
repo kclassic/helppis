@@ -25,6 +25,7 @@ const ThingContainer = styled(Box)`
   span {
     margin-left: 8px;
   }
+  cursor: pointer;
 `;
 
 const templates = [
