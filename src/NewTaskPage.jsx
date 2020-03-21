@@ -40,7 +40,7 @@ const mummos = [
 const timeOptions = [
   { title: "Tänään", icon: QueryBuilderIcon, id: 1 },
   { title: "Huomenna", icon: UpdateIcon, id: 2 },
-  { title: "Viikko", icon: DateRangeIcon, id: 3 }
+  { title: "Tällä viikolla", icon: DateRangeIcon, id: 3 }
 ];
 
 const newTask = {
