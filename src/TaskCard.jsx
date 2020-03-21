@@ -5,12 +5,15 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 
 const CardContainer = styled(Box)`
-  border: 1px solid #333;
+  border: 1px solid #797979;
   border-radius: 3px;
-  margin: 8px 0;
+  margin: 15px 0;
   padding: 15px;
   background-color: ${props => (props.active ? "#d0d0ff" : "#fff")};
   color: #333;
+  box-shadow: 3px 3px 5px #b5b5b5;
+  ${props => (props.active ? "box-shadow: inset 0px 0px 5px #272727;" : null)}
+  }
 `;
 
 const IconContainer = styled(Box)`

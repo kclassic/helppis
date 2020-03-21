@@ -17,7 +17,7 @@ const Container = styled(Box)`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: #ffdbe7;
+  background-color: #f2f2f2;
   margin: -8px;
   font-family: "Lato", sans-serif;
   a {

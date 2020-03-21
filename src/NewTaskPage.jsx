@@ -17,7 +17,9 @@ const ThingContainer = styled(Box)`
   border-radius: 5px;
   margin-bottom: 15px;
   padding: 8px;
-  background-color: ${props => (props.active ? "aquamarine" : "#e6e6e6")};
+  background-color: ${props => (props.active ? "#94ffab" : "#e6e6e6")};
+  transition: all 0.25s ease;
+  ${props => (props.active ? "box-shadow: inset 0px 0px 5px #272727;" : null)}
   display: flex;
   align-items: center;
   span {
