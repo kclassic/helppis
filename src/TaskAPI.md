@@ -9,6 +9,7 @@ type task = {
   type: Store | Food | Apotechary | Company | Custom,
   location: string,
   helper?: User,
+  status: 'open' | 'progress' | 'done',
 }
 ```
 
