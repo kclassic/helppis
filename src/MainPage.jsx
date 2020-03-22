@@ -81,7 +81,7 @@ const MainPage = ({ tasks, activeTasks, createdTasks, ownTask }) => {
             textColor="primary"
             centered
           >
-            <Tab label="Avun tarve" />
+            <Tab label="Avuntarve" />
             <Tab label="Omat ilmoitukset" />
           </StyledTabs>
           <TabPanel value={value} index={0}>
