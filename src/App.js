@@ -4,7 +4,6 @@ import styled from "styled-components";
 import Box from "@material-ui/core/Box";
 
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import ChatIcon from "@material-ui/icons/Chat";
 
 import Chat from "./chat/Chat";
 import MainPage from "./MainPage";
@@ -95,7 +94,7 @@ class App extends React.Component {
           created: new Date(),
           type: {
             type: "store",
-            items: ["milk", "bread", "beer"]
+            items: ["maito", "leipä", "jauheliha", "kahvi", "pasta"]
           },
           location: "Iso-mumminkatu 2",
           status: "open"
@@ -127,7 +126,7 @@ class App extends React.Component {
           created: new Date(),
           type: {
             type: "store",
-            items: ["milk", "bread", "beer"]
+            items: ["maito", "leipä", "jauheliha", "kahvi", "pasta"]
           },
           location: "Hevosenkengänkuja 2, 11011 Helsinki",
           status: "open"
@@ -141,7 +140,7 @@ class App extends React.Component {
           created: new Date(),
           type: {
             type: "store",
-            items: ["milk", "bread", "beer"]
+            items: ["margariini", "kahvi", "juusto", "jugurtti"]
           },
           location: "Hevosenkengänkuja 2, 11011 Helsinki",
           status: "open"

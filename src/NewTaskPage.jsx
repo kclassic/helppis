@@ -19,9 +19,13 @@ const ThingContainer = styled(Box)`
   border-radius: 5px;
   margin-bottom: 15px;
   padding: 8px;
-  background-color: ${props => (props.active ? "#94ffab" : "#e6e6e6")};
+  background-color: #fff;
   transition: all 0.25s ease;
-  ${props => (props.active ? "box-shadow: inset 0px 0px 5px #272727;" : null)}
+  box-shadow: 0px 6px 12px 2px #d4d2d2;
+  ${props =>
+    props.active
+      ? "box-shadow: inset 0px 0px 5px #272727; color: #6ac1ac;"
+      : null}
   display: flex;
   align-items: center;
   span {
@@ -45,7 +49,10 @@ const timeOptions = [
   { title: "Huomenna", icon: UpdateIcon, id: 2 },
   { title: "Tällä viikolla", icon: DateRangeIcon, id: 3 }
 ];
-
+const StyledChip = styled(Chip)`
+  margin: 5px;
+  text-transform: capitalize;
+`;
 const newTask = {
   id: 9,
   owner: {
@@ -60,6 +67,40 @@ const newTask = {
   location: "Home address",
   status: "open"
 };
+const btnStyles = {
+  backgroundColor: "#4890e2",
+  width: "100%",
+  color: "white",
+  textTransform: "none",
+  fontSize: "18px",
+  fontWeight: "300",
+  padding: "10px",
+  borderRadius: "8px",
+  marginTop: "20px"
+};
+
+const btnStylesPrev = {
+  backgroundColor: "#fff",
+  width: "100%",
+  color: "#333",
+  textTransform: "none",
+  fontSize: "18px",
+  fontWeight: "300",
+  padding: "10px",
+  borderRadius: "8px",
+  marginTop: "20px"
+};
+const activeBtnStyle = {
+  backgroundColor: "#3ec4a6",
+  width: "100%",
+  color: "white",
+  textTransform: "none",
+  fontSize: "18px",
+  fontWeight: "300",
+  padding: "10px",
+  borderRadius: "8px",
+  marginTop: "20px"
+};
 
 const NewTask = ({ tasks, addTask }) => {
   const [template, setTemplate] = React.useState(0);
@@ -68,13 +109,12 @@ const NewTask = ({ tasks, addTask }) => {
   const [submitted, setSubmitted] = React.useState(false);
   const [step, setStep] = React.useState(0);
   const [shopItem, setShopItem] = React.useState([
-    { key: 0, label: "Banaaneita 1kg" },
-    { key: 1, label: "Vessapaperia" }
+    "Banaaneita 1kg",
+    "Vessapaperia"
   ]);
 
   const handleInput = text => {
-    const newChip = { key: shopItem.length, label: text };
-    setShopItem([...shopItem, newChip]);
+    setShopItem([...shopItem, text]);
   };
 
   const handleDelete = chipToDelete => () => {
@@ -149,12 +189,16 @@ const NewTask = ({ tasks, addTask }) => {
               <span>{opt.title}</span>
             </ThingContainer>
           ))}
-          <Button onClick={() => goToStep(1)}>Seuraava</Button>
+          <Button style={btnStyles} onClick={() => goToStep(1)}>
+            Seuraava
+          </Button>
         </>
       ) : null}
       {step === 1 ? (
         <>
-          <Button onClick={() => goToStep(0)}>Edellinen</Button>
+          <Button style={btnStylesPrev} onClick={() => goToStep(0)}>
+            Edellinen
+          </Button>
           <Title>Ostoslista</Title>
           <SubTitle>Lisää tuotteen nimi ja lukumäärä</SubTitle>
           <TextField
@@ -169,18 +213,20 @@ const NewTask = ({ tasks, addTask }) => {
             }}
           />
           <SubTitle>Ostokset</SubTitle>
-          {shopItem.map(data => {
+          {shopItem.map((data, idx) => {
             return (
-              <Chip
-                key={data.key}
-                label={data.label}
+              <StyledChip
+                key={idx}
+                label={data}
                 onDelete={handleDelete(data)}
                 variant="outlined"
                 color="primary"
               />
             );
           })}
-          <Button onClick={submitRequest}>Lähetä avunpyyntö</Button>
+          <Button style={activeBtnStyle} onClick={submitRequest}>
+            Lähetä avunpyyntö
+          </Button>
         </>
       ) : null}
     </>
