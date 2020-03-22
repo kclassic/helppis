@@ -17,7 +17,7 @@ const Container = styled(Box)`
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: #f2f2f2;
+  background-color: #f7faff;
   margin: -8px;
   font-family: "Lato", sans-serif;
   a {
@@ -38,7 +38,6 @@ const Header = styled(Box)`
 const MainTitle = styled(Link)`
   color: #333;
   font-size: 25px;
-  letter-spacing: 2px;
 `;
 
 const AppContext = React.createContext();
@@ -103,26 +102,26 @@ class App extends React.Component {
         }
       ],
       activeTasks: [
-        {
-          id: 0,
-          owner: {
-            name: "John",
-            age: "44"
-          },
-          created: new Date(),
-          type: {
-            type: "store",
-            items: ["milk", "bread", "beer"]
-          },
-          location: "Hevosenkengänkuja 2, 11011 Helsinki",
-          status: "progress"
-        }
+        // {
+        //   id: 0,
+        //   owner: {
+        //     name: "Marko",
+        //     age: "44"
+        //   },
+        //   created: new Date(),
+        //   type: {
+        //     type: "store",
+        //     items: ["milk", "bread", "beer"]
+        //   },
+        //   location: "Hevosenkengänkuja 2, 11011 Helsinki",
+        //   status: "progress"
+        // }
       ],
       tasks: [
         {
           id: 0,
           owner: {
-            name: "John",
+            name: "Pekka",
             age: "44"
           },
           created: new Date(),
@@ -131,7 +130,7 @@ class App extends React.Component {
             items: ["milk", "bread", "beer"]
           },
           location: "Hevosenkengänkuja 2, 11011 Helsinki",
-          status: "progress"
+          status: "open"
         },
         {
           id: 1,
@@ -180,7 +179,7 @@ class App extends React.Component {
                 <div style={{ float: "right" }}>
                   <Link to="/profile">
                     <AccountCircleIcon
-                      htmlColor={"#e500ff"}
+                      htmlColor={"#9c9c9c"}
                       fontSize={"large"}
                     />
                   </Link>

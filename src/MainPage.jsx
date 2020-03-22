@@ -11,6 +11,25 @@ import Box from "@material-ui/core/Box";
 const TaskList = styled("ul")`
   list-style: none;
   padding-inline-start: 0;
+  margin-block-start: 5px;
+`;
+
+const StyledTabs = styled(Tabs)`
+  button {
+    color: #b1b0b0;
+  }
+  .MuiTabs-centered {
+    justify-content: flex-start;
+  }
+  .MuiTab-textColorPrimary.Mui-selected {
+    color: #9eb5d8;
+  }
+  .MuiTabs-indicator {
+    display: none;
+  }
+  .MuiTab-root {
+    text-transform: none;
+  }
 `;
 
 function TabPanel(props) {
@@ -29,6 +48,17 @@ function TabPanel(props) {
   );
 }
 
+const btnStyles = {
+  backgroundColor: "#4890e2",
+  width: "100%",
+  color: "white",
+  textTransform: "none",
+  fontSize: "18px",
+  fontWeight: "300",
+  padding: "10px",
+  borderRadius: "8px",
+  marginTop: "20px"
+};
 const MainPage = ({ tasks, activeTasks, createdTasks, ownTask }) => {
   let { url, path } = useRouteMatch();
 
@@ -44,7 +74,7 @@ const MainPage = ({ tasks, activeTasks, createdTasks, ownTask }) => {
           <TaskPage tasks={tasks} ownTask={ownTask} />
         </Route>
         <Route path={path}>
-          <Tabs
+          <StyledTabs
             value={value}
             onChange={handleChange}
             indicatorColor="primary"
@@ -53,7 +83,7 @@ const MainPage = ({ tasks, activeTasks, createdTasks, ownTask }) => {
           >
             <Tab label="Avun tarve" />
             <Tab label="Omat ilmoitukset" />
-          </Tabs>
+          </StyledTabs>
           <TabPanel value={value} index={0}>
             <TaskList>
               {activeTasks.map((task, idx) => (
@@ -90,7 +120,7 @@ const MainPage = ({ tasks, activeTasks, createdTasks, ownTask }) => {
             </TaskList>
           </TabPanel>
           <Link to={`/addtask`}>
-            <Button>Luo Helppis - ilmoitus</Button>
+            <Button style={btnStyles}>Pyydä apua</Button>
           </Link>
         </Route>
       </Switch>

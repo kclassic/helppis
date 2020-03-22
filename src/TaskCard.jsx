@@ -5,14 +5,13 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
 
 const CardContainer = styled(Box)`
-  border: 1px solid #797979;
-  border-radius: 3px;
-  margin: 15px 0;
+  display: flex;
+  border-radius: 8px;
+  margin-bottom: 15px;
   padding: 15px;
-  background-color: ${props => (props.active ? "#d0d0ff" : "#fff")};
+  background-color: #fff;
   color: #333;
-  box-shadow: 3px 3px 5px #b5b5b5;
-  ${props => (props.active ? "box-shadow: inset 0px 0px 5px #272727;" : null)}
+  box-shadow: 0px 6px 12px 2px #d4d2d2;
   }
 `;
 
@@ -26,45 +25,73 @@ const IconContainer = styled(Box)`
 `;
 
 const Distance = styled(Box)`
-  margin-left: auto;
+  color: #b5b7bd;
 `;
 
+const IconDiv = styled(Box)`
+  height: 60px;
+  width: 60px;
+  border-radius: 8px;
+  background-color: ${props => (props.active ? "#d9ffe5" : "#f2f0fd")};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+`;
+
+const Content = styled(Box)`
+  width: 220px;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
+`;
+const InnerContent = styled(Box)`
+  display: flex;
+  justify-content: space-between;
+  color: #4b4b4b;
+  span {
+    font-weight: 700;
+  }
+`;
+
+const Head = styled(Box)`
+  font-size: 14px;
+  color: ${props => (props.green ? "#6ac1ac" : "#aaadb3")};
+`;
 const TaskCard = ({ task, active }) => {
+  const iconColor = active ? "#3ec4a6" : "#775aec";
   if (!task) return null;
   return (
-    <CardContainer active={active}>
-      {active ? (
-        <div
-          style={{
-            paddingBottom: "2px",
-            marginBottom: "10px",
-            borderBottom: "1px solid #333"
-          }}
-        >
-          <span role="img" aria-label="strongness">
-            💪
-          </span>{" "}
-          Olet matkalla apuun!
-        </div>
-      ) : null}
-      <IconContainer>
+    <CardContainer>
+      <IconDiv active={active}>
         {task.type.type === "store" ? (
-          <>
-            <ShoppingCartIcon htmlColor="#333" />
-            <span>Kaupassa käynti</span>
-            <Distance>100m</Distance>
-          </>
+          <ShoppingCartIcon htmlColor={iconColor} />
         ) : (
-          <>
-            <HelpOutlineIcon htmlColor="#333" />
-            <span>Muu tarve</span>
-            <Distance>1.3km</Distance>
-          </>
+          <HelpOutlineIcon htmlColor={iconColor} />
         )}
-      </IconContainer>
-      <span>
-        {task.owner.name}, {task.owner.age}, odottaa avustajaa
-      </span>
+      </IconDiv>
+      <Content>
+        {active ? (
+          <Head green>Olet matkalla auttamaan!</Head>
+        ) : (
+          <Head>
+            {task.owner.name} ({task.owner.age}) odottaa apua
+          </Head>
+        )}
+        {task.type.type === "store" ? (
+          <InnerContent>
+            <span>Kaupassakäynti</span>
+            <Distance>100m</Distance>
+          </InnerContent>
+        ) : (
+          <InnerContent>
+            <span>Muu tarve</span>
+            <Distance>1.2km</Distance>
+          </InnerContent>
+        )}
+      </Content>
     </CardContainer>
   );
 };
